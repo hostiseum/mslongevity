@@ -18,7 +18,7 @@ namespace Longevity
             }
         }
 
-        public Longevity()
+        public MSLongevity()
         {
             this.planets = this.createPlanets();
         }
