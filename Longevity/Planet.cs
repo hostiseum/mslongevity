@@ -137,6 +137,19 @@ namespace Longevity
             });
         }
 
+        public string DurationToString()
+        {
+            TimeSpan ts = planetTimeSpan;
+            return string.Format("{0} Y {1} M {2} D {3}:{4}", new object[]
+            {
+                this.GetYears(ts),
+                this.GetMonths(ts),
+                this.GetDays(ts),
+                ts.Hours,
+                ts.Minutes
+            });
+        }
+
         private decimal GetYears(TimeSpan ts)
         {
             return Math.Floor(ts.Days / 365.242m);

@@ -4,16 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Longevity"
+        xmlns:uc="clr-namespace:Longevity"
         mc:Ignorable="d"
         Title="MS-Longevity" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel>
@@ -30,13 +31,26 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                
-                
+
+                <uc:PlanetDegreesMinutesTextBoxControl x:Name="ctrlSun" PlanetName="Sun" Margin="10,10,0,10" Height="25" VerticalAlignment="Center" DegreesMinutesLostFocus="ctrlSun_DegreesMinutesLostFocus"></uc:PlanetDegreesMinutesTextBoxControl>
+                <uc:PlanetDegreesMinutesTextBoxControl x:Name="ctrlMoon" PlanetName="Moon" Grid.Row="1" Margin="10,10,0,8" VerticalAlignment="Center" Height="25"></uc:PlanetDegreesMinutesTextBoxControl>
+                <uc:PlanetDegreesMinutesTextBoxControl x:Name="ctrlMercury" PlanetName="Mercury" Grid.Row="2" Margin="10,10,0,8" VerticalAlignment="Center" Height="25"></uc:PlanetDegreesMinutesTextBoxControl>
+                <uc:PlanetDegreesMinutesTextBoxControl x:Name="ctrlMars" PlanetName="Mars" Grid.Row="3" Margin="10,9,0,9" VerticalAlignment="Center" Height="25"></uc:PlanetDegreesMinutesTextBoxControl>
+                <uc:PlanetDegreesMinutesTextBoxControl x:Name="ctrlJupiter" PlanetName="Jupiter" Grid.Row="4" Margin="10,10,0,8" VerticalAlignment="Center" Height="25"></uc:PlanetDegreesMinutesTextBoxControl>
+                <uc:PlanetDegreesMinutesTextBoxControl x:Name="ctrlVenus" PlanetName="Venus" Grid.Row="5" Margin="10,10,0,8" VerticalAlignment="Center" Height="25"></uc:PlanetDegreesMinutesTextBoxControl>
+                <uc:PlanetDegreesMinutesTextBoxControl x:Name="ctrlSaturn" PlanetName="Saturn" Grid.Row="6" Margin="10,10,0,8" VerticalAlignment="Center" Height="25"></uc:PlanetDegreesMinutesTextBoxControl>
+
+                <StackPanel Grid.Row="7" Orientation="Horizontal">
+                <TextBlock Text="Total Duration" ></TextBlock>
+                <TextBlock Text="Total" HorizontalAlignment="Right"></TextBlock>
+                </StackPanel>
+
+
             </Grid>
         </StackPanel> 
     </Grid>
