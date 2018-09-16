@@ -10,7 +10,7 @@
         <TextBlock Text="Planet" Name="txtPlanetName" Width="50" VerticalAlignment="Center"></TextBlock>
         <TextBox Name="txtDegree" Width="40" Margin="3,0,0,0" ></TextBox>
         <TextBox Name="txtMinutes" Width="40" Margin="3,0,0,0"></TextBox>
-        <ComboBox  Name="lstDurationType"  Margin="6,0,0,0" Width="80">
+        <ComboBox  Name="lstDurationType"  Margin="6,0,0,0" Width="80" SelectionChanged="lstDurationType_SelectionChanged" >
                   </ComboBox>
         <TextBox Name="Duration" Width="120" Margin="3,0,0,0"></TextBox>
     </StackPanel>

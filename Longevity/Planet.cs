@@ -16,6 +16,23 @@ namespace Longevity
 
         private int minutes;
 
+        private string durationCalculationType = "Full";
+
+
+        public string DurationCalculationType
+        {
+            get
+            {
+                return durationCalculationType;
+            }
+
+            set
+            {
+                this.durationCalculationType = value;
+            }
+        }
+
+
         public string PlanetName
         {
             get
@@ -49,6 +66,14 @@ namespace Longevity
             set
             {
                 this.minutes = value;
+            }
+        }
+
+        public TimeSpan PlanetTotalTimeSpan
+        {
+            get
+            {
+                return this.planetTimeSpan;
             }
         }
 
@@ -107,22 +132,28 @@ namespace Longevity
 
         public TimeSpan HalfPlanetDuration()
         {
+            this.planetTimeSpan = this.planetTimeSpan.Subtract(new TimeSpan(this.planetTimeSpan.Ticks / 2L));
+            this.durationCalculationType = "Half";
             return this.planetTimeSpan.Subtract(new TimeSpan(this.planetTimeSpan.Ticks / 2L));
         }
 
         public TimeSpan TwoThirdPlanetDuration()
         {
+            this.durationCalculationType = "Two Third";
+            this.planetTimeSpan = this.planetTimeSpan.Subtract(new TimeSpan(this.planetTimeSpan.Ticks / 3L));
             return this.planetTimeSpan.Subtract(new TimeSpan(this.planetTimeSpan.Ticks / 3L));
         }
 
         public TimeSpan AddPlanetDuration(int times)
         {
+            this.durationCalculationType = string.Format("{0} times", times);
+            this.planetTimeSpan = this.planetTimeSpan.Add(new TimeSpan(this.planetTimeSpan.Ticks * (long)(--times)));
             return this.planetTimeSpan.Add(new TimeSpan(this.planetTimeSpan.Ticks * (long)(--times)));
         }
 
         public void CalculateDuration()
         {
-            this.planetTimeSpan = PlanetDuration.Calculate(this.degree, this.minutes);
+            this.planetTimeSpan = PlanetDuration.Calculate(this.degree, this.DegreeMinutes);
         }
 
         public string DurationToString(TimeSpan ts)

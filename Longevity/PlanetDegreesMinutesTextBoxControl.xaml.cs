@@ -20,6 +20,9 @@ namespace Longevity
     /// </summary>
     public partial class PlanetDegreesMinutesTextBoxControl : UserControl
     {
+        public static readonly DependencyProperty PlanetNameProperty =
+            DependencyProperty.Register("PlanetName", typeof(string), typeof(MainWindow), new UIPropertyMetadata(string.Empty));
+
         public delegate void DegreesMinutesLostFocusEventHandler(object sender, EventArgs e);
         public event EventHandler DegreesMinutesLostFocus;
         private List<string> durationTypes = new List<string>();
@@ -47,42 +50,47 @@ namespace Longevity
 
         private void Degree_LostFocus(object sender, RoutedEventArgs e)
         {
-           
-           
-            if (Valid(txtDegree.Text))
+
+            if (!string.IsNullOrEmpty(txtDegree.Text) || !string.IsNullOrEmpty(txtMinutes.Text))
             {
-                planet.Degrees = int.Parse(txtDegree.Text);
-            }
 
-            if (Valid(txtMinutes.Text))
-            {
-                planet.DegreeMinutes = int.Parse(txtMinutes.Text);
-            }
+                if (Valid(txtDegree.Text))
+                {
+                    planet.Degrees = int.Parse(txtDegree.Text);
+                }
 
-            planet.CalculateDuration();
+                if (Valid(txtMinutes.Text))
+                {
+                    planet.DegreeMinutes = int.Parse(txtMinutes.Text);
+                }
+
+                planet.CalculateDuration();
 
 
-            if (lstDurationType.SelectedValue.ToString() == "Full") { 
+                if (lstDurationType.SelectedValue.ToString() == "Full")
+                {
 
-            this.Duration.Text = planet.DurationToString();
-            }
+                    this.Duration.Text = planet.DurationToString();
+                }
 
-            if (lstDurationType.SelectedValue.ToString() == "Half") { 
-            this.Duration.Text = planet.DurationToString(planet.HalfPlanetDuration());
-            }
-            if(lstDurationType.SelectedValue.ToString() == "Double")
-            this.Duration.Text = planet.DurationToString(planet.AddPlanetDuration(2));
+                if (lstDurationType.SelectedValue.ToString() == "Half")
+                {
+                    this.Duration.Text = planet.DurationToString(planet.HalfPlanetDuration());
+                }
+                if (lstDurationType.SelectedValue.ToString() == "Double")
+                    this.Duration.Text = planet.DurationToString(planet.AddPlanetDuration(2));
 
-            if (lstDurationType.SelectedValue.ToString() == "Triple")
-                this.Duration.Text = planet.DurationToString(planet.AddPlanetDuration(3));
+                if (lstDurationType.SelectedValue.ToString() == "Triple")
+                    this.Duration.Text = planet.DurationToString(planet.AddPlanetDuration(3));
 
-            if (lstDurationType.SelectedValue.ToString() == "One third")
-                this.Duration.Text = planet.DurationToString(planet.TwoThirdPlanetDuration());
-            
+                if (lstDurationType.SelectedValue.ToString() == "One third")
+                    this.Duration.Text = planet.DurationToString(planet.TwoThirdPlanetDuration());
 
-            if (DegreesMinutesLostFocus != null)
-            {
-                DegreesMinutesLostFocus(this, e);
+
+                if (DegreesMinutesLostFocus != null)
+                {
+                    DegreesMinutesLostFocus(this, e);
+                }
             }
         }
 
@@ -90,12 +98,12 @@ namespace Longevity
         {
             get
             {
-                return txtPlanetName.Text;
+                return (string)this.GetValue(PlanetNameProperty) ;
             }
 
             set
             {
-                txtPlanetName.Text = value;
+                this.SetValue(PlanetNameProperty, value); 
             }
         }
 
@@ -120,6 +128,50 @@ namespace Longevity
                 return int.TryParse(number, out num);
             }
             return false;
+        }
+
+        private void lstDurationType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (planet != null)
+            {
+                if (Valid(txtDegree.Text))
+                {
+                    planet.Degrees = int.Parse(txtDegree.Text);
+                }
+
+                if (Valid(txtMinutes.Text))
+                {
+                    planet.DegreeMinutes = int.Parse(txtMinutes.Text);
+                }
+
+                planet.CalculateDuration();
+
+
+                if (lstDurationType.SelectedValue.ToString() == "Full")
+                {
+
+                    this.Duration.Text = planet.DurationToString();
+                }
+
+                if (lstDurationType.SelectedValue.ToString() == "Half")
+                {
+                    this.Duration.Text = planet.DurationToString(planet.HalfPlanetDuration());
+                }
+                if (lstDurationType.SelectedValue.ToString() == "Double")
+                    this.Duration.Text = planet.DurationToString(planet.AddPlanetDuration(2));
+
+                if (lstDurationType.SelectedValue.ToString() == "Triple")
+                    this.Duration.Text = planet.DurationToString(planet.AddPlanetDuration(3));
+
+                if (lstDurationType.SelectedValue.ToString() == "One third")
+                    this.Duration.Text = planet.DurationToString(planet.TwoThirdPlanetDuration());
+
+
+                if (DegreesMinutesLostFocus != null)
+                {
+                    DegreesMinutesLostFocus(this, e);
+                }
+            }
         }
     }
 }

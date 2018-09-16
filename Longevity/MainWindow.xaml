@@ -6,18 +6,18 @@
         xmlns:local="clr-namespace:Longevity"
         xmlns:uc="clr-namespace:Longevity"
         mc:Ignorable="d"
-        Title="MS-Longevity" Height="350" Width="525">
+        Title="MS-Longevity" Height="450" Width="525" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
-           
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <!--<ColumnDefinition Width="*"></ColumnDefinition>-->
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <StackPanel Margin="5,5,5,5" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
@@ -45,13 +45,19 @@
                 <uc:PlanetDegreesMinutesTextBoxControl x:Name="ctrlVenus" PlanetName="Venus" Grid.Row="5" Margin="10,10,0,8" VerticalAlignment="Center" Height="25"></uc:PlanetDegreesMinutesTextBoxControl>
                 <uc:PlanetDegreesMinutesTextBoxControl x:Name="ctrlSaturn" PlanetName="Saturn" Grid.Row="6" Margin="10,10,0,8" VerticalAlignment="Center" Height="25"></uc:PlanetDegreesMinutesTextBoxControl>
 
-                <StackPanel Grid.Row="7" Orientation="Horizontal">
-                <TextBlock Text="Total Duration" ></TextBlock>
-                <TextBlock Text="Total" HorizontalAlignment="Right"></TextBlock>
-                </StackPanel>
+                
 
 
             </Grid>
-        </StackPanel> 
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5,2,5,2">
+            <TextBlock Text="Total Duration:" ></TextBlock>
+            <TextBlock Text="" Name="totalDuration" FontWeight="Bold"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="Calculate" Margin="2,2,2,2" Width="75" Click="Calculate_Click">Calculate</Button>
+            <Button Name="Close" Margin="2,2,2,2" Width="75" Click="Close_Click">Close</Button>
+            <Button Name="Print" Margin="2,2,2,2" Width="75" Click="Print_Click">Print</Button>
+        </StackPanel>
     </Grid>
 </Window>
